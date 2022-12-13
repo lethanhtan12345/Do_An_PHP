@@ -1,0 +1,112 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quizz_game_ver2/charge_page.dart';
+import 'package:quizz_game_ver2/questionscreen.dart';
+
+class TopicScreen extends StatelessWidget {
+  @override
+Widget build(BuildContext context)=>Topic_Home();
+}
+
+
+class Topic_Home extends StatefulWidget {
+  const Topic_Home({super.key});
+  @override
+  State<Topic_Home> createState() => _Topic_HomeState();
+}
+
+class _Topic_HomeState extends State<Topic_Home> {
+  @override
+  Widget createTopic(String strImage, String strName, Color color, int fieldid)
+  {
+    return Container(
+                  margin: EdgeInsets.only(
+                    left: 40,
+                    right: 50,
+                    top: 10,
+                    bottom: 40
+                  ),
+                  padding: EdgeInsets.all(10),                 
+                  decoration: BoxDecoration(
+                    color:color,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(60),
+                      topRight: Radius.circular(15),
+                      bottomRight: Radius.circular(60)
+                    ),
+                   
+                  ),
+                  child: OutlinedButton(
+                    onPressed: (){},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [                   
+                        Text(strName,style: TextStyle(fontFamily: 'Nunito',fontSize: 25,color: Color.fromARGB(255, 225, 229, 231),fontWeight: FontWeight.bold),),
+                        Image(image: AssetImage(strImage),width: 100,) 
+                      ],
+                    ),
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: Size(100,90),
+                    side: BorderSide(color: Colors.transparent)
+                  ),
+                  ),
+                );
+  }
+  
+  @override
+  
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.deepPurpleAccent,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              
+              OutlinedButton(onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder:(context)=>charge_page())), child:Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(padding: EdgeInsets.all(10)),
+                FaIcon(FontAwesomeIcons.crown,color: Colors.yellow,),
+                Text(' 300',style: TextStyle(color: Colors.yellow),)
+              ],
+            )),
+            Text('Topic ',style: TextStyle(fontFamily: 'Nunito',fontSize: 25,fontWeight: FontWeight.bold),),
+             OutlinedButton(onPressed: (){}, child:Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(padding: EdgeInsets.all(10)),
+                Icon(Icons.energy_savings_leaf),
+                Text(' 150',style: TextStyle(color: Colors.yellow),)
+              ],
+            )),
+            ],
+           
+          ),
+        ),
+        body: ListView(
+          children: [
+            Column(
+              
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+               
+              createTopic('images/science.png', 'Science',Colors.blueAccent, 1),
+
+              createTopic('images/georaphy.png', 'Georaphy',Color.fromARGB(255, 236, 188, 85), 2),
+
+              createTopic('images/sport.png', 'Sport',Color.fromARGB(255, 105, 212, 209), 2),
+
+              createTopic('images/math.png', 'Sport',Color.fromARGB(255, 219, 106, 86), 4),
+
+              createTopic('images/natural.png', 'Sport',Color.fromARGB(255, 118, 218, 125), 6),
+
+              createTopic('images/culture.png', 'Culture',Color.fromARGB(255, 225, 111, 212), 3),
+
+              
+              ],
+            ),
+          ],
+        ));
+  }
+}
